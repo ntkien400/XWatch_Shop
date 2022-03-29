@@ -1,0 +1,10 @@
+<decorators defaultdir="/WEB-INF/Views/Layouts">
+	<decorator name="user" page="user.jsp">
+		<!-- Đường dẫn html -->
+		<pattern>/*</pattern>
+	</decorator>
+	<decorator name="admin" page="admin.jsp">
+		<!-- Đường dẫn html -->
+		<pattern>/admin/*</pattern>
+	</decorator>
+</decorators>

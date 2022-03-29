@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!-- Kiên  -->
+
+
 <title>Trang chủ</title>
 <body>
 	<!-- 
@@ -14,15 +15,13 @@ Body Section
 				<h3>Thương hiệu</h3>
 				<ul class="nav nav-list">
 					<c:forEach var="item" items="${ brands }">
-						<li><a href="products.html"><span
+						<li><a href="<c:url value="/thuong-hieu-${ item.brandname }"/>"><span
 								class="icon-chevron-right"></span>${ item.brandname }</a></li>
 					</c:forEach>
-
-
-					<li><a class="totalInCart" href="cart.html"><strong>Total
+<!-- 					<li><a class="totalInCart" href="cart.html"><strong>Total
 								Amount <span class="badge badge-warning pull-right"
 								style="line-height: 18px;">$448.42</span>
-						</strong></a></li>
+						</strong></a></li> -->
 				</ul>
 			</div>
 

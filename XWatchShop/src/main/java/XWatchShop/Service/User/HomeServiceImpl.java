@@ -42,5 +42,14 @@ public class HomeServiceImpl implements IHomeService {
 		List<ProductsDTO> listProducts = productsDAO.GetDataProducts();
 		return listProducts;
 	}
-	
+	@Override
+	public List<ProductsDTO> GetDataNewProducts() {
+		List<ProductsDTO> listProducts = productsDAO.GetDataNewProducts();
+		return listProducts;
+	}
+	@Override
+	public List<ProductsDTO> GetDataProductsHighlight() {
+		List<ProductsDTO> listProducts = productsDAO.GetDataProductsHighlight();
+		return listProducts;
+	}
 }

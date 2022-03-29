@@ -9,7 +9,7 @@ import XWatchShop.DTO.ProductsDTOMapper;
 @Repository
 public class ProductsDAO extends BaseDAO{
 	
-	private String SqlString() {
+	private StringBuffer SqlString() {
 		StringBuffer  sql = new StringBuffer();
 		sql.append("SELECT ");
 		sql.append("p.productID, ");
@@ -32,11 +32,34 @@ public class ProductsDAO extends BaseDAO{
 		sql.append("p.updated_at ");
 		sql.append("FROM products AS p INNER JOIN images AS i ");
 		sql.append("ON p.productID = i.productID ");
-		sql.append("GROUP By p.productID, i.productID");
+		return sql;
+	}
+	
+	private String SqlProducts(boolean newProduct, boolean highLight) {
+		StringBuffer  sql = SqlString();
+		if(newProduct) {
+			sql.append("WHERE p.new_product = true ");
+		}
+		if(highLight) {
+			sql.append("AND p.highlight = true ");
+		}
+		sql.append("GROUP By p.productID, i.productID ");
+		sql.append("ORDER BY RAND() ");
+		
 		return sql.toString();
 	}
 	public List<ProductsDTO> GetDataProducts(){
-		String sql = SqlString();
+		String sql = SqlProducts(true, true);
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
+		return listProducts;
+	}
+	public List<ProductsDTO> GetDataNewProducts(){
+		String sql = SqlProducts(true, false);
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
+		return listProducts;
+	}
+	public List<ProductsDTO> GetDataProductsHighlight(){
+		String sql = SqlProducts(false, true);
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}

@@ -7,7 +7,6 @@
 <title>Thương hiệu</title>
 </head>
 <body>
-<h1>${ brandname }</h1>
 	<div class="row">
 		<div id="sidebar" class="span3">
 			<div class="well well-small">
@@ -35,8 +34,9 @@
 					<li style="border: 0">&nbsp;</li>
 				</ul>
 			</div>
-
 			
+			<a class="shopBtn btn-block" href="#">Upcoming products <br>
+			<small>Click to view</small></a> <br> <br>
 			<ul class="nav nav-list promowrapper">
 				<li>
 					<div class="thumbnail">
@@ -90,14 +90,6 @@
 New Products
 -->
 			<div class="well well-small">
-				<div class="row">
-						<select class="pull-right">
-							<option>Từ A -> Z</option>
-							<option>Giá cao -> thấp</option>
-							<option>Giá thấp -> cao</option>
-						</select>
-						<span class="pull-right" style="margin-right: 15px; margin-top: 5px">Sắp xếp:</span>
-				</div>
 				<h3>Our Products</h3>
 				<div class="row-fluid">
 					<ul class="thumbnails">
@@ -406,5 +398,16 @@ New Products
 
 			</div>
 		</div>
+	</div>
+	<div class="pagination">
+	  <a href="#">&laquo;</a>
+	  <a href="#">1</a>
+	  <a class="active" href="#">2</a>
+	  <a href="#">3</a>
+	  <a href="#">4</a>
+	  <a href="#">5</a>
+	  <a href="#">6</a>
+	  <a href="#">&raquo;</a>
+	</div>
 </body>
 </html>

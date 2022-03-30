@@ -5589,6 +5589,9 @@ a.thumbnail:focus {
 .thumbnail .caption {
   padding: 9px;
   color: #555555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 
 .media,
@@ -6165,3 +6168,22 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

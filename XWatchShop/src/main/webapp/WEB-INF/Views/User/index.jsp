@@ -15,7 +15,7 @@ Body Section
 				<h3>Thương hiệu</h3>
 				<ul class="nav nav-list">
 					<c:forEach var="item" items="${ brands }">
-						<li><a href="<c:url value="/thuong-hieu-${ item.brandname }"/>"><span
+						<li><a href="<c:url value="/thuong-hieu/${ item.brandname }"/>"><span
 								class="icon-chevron-right"></span>${ item.brandname }</a></li>
 					</c:forEach>
 <!-- 					<li><a class="totalInCart" href="cart.html"><strong>Total
@@ -222,41 +222,4 @@ New Products
 		</div>
 	</div>
 	</div>
-	<!-- 
-Clients 
--->
-	<section class="our_client">
-		<hr class="soften" />
-		<h4 class="title cntr">
-			<span class="text">Manufactures</span>
-		</h4>
-		<hr class="soften" />
-		<div class="row">
-			<div class="span2">
-				<a href="#"><img alt=""
-					src="<c:url value="/assets/user/img/1.png"/>"></a>
-			</div>
-			<div class="span2">
-				<a href="#"><img alt=""
-					src="<c:url value="/assets/user/img/2.png"/>"></a>
-			</div>
-			<div class="span2">
-				<a href="#"><img alt=""
-					src="<c:url value="/assets/user/img/3.png"/>"></a>
-			</div>
-			<div class="span2">
-				<a href="#"><img alt=""
-					src="<c:url value="/assets/user/img/4.png"/>"></a>
-			</div>
-			<div class="span2">
-				<a href="#"><img alt=""
-					src="<c:url value="/assets/user/img/5.png"/>"></a>
-			</div>
-			<div class="span2">
-				<a href="#"><img alt=""
-					src="<c:url value="/assets/user/img/6.png"/>"></a>
-			</div>
-		</div>
-	</section>
-
 </body>

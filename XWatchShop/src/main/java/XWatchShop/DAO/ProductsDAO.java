@@ -48,6 +48,27 @@ public class ProductsDAO extends BaseDAO{
 		
 		return sql.toString();
 	}
+	private String SqlBrandIDByName(String brandName) {
+		StringBuffer  sql = new StringBuffer();
+		sql.append("SELECT ");
+		sql.append("b.brandID ");
+		sql.append("FROM brands AS b ");
+		sql.append("WHERE b.brandname = '" + brandName +"'" + " ");
+		return sql.toString();
+	}
+	private String SqlProductByID(int brandID) {
+		StringBuffer  sql = SqlString();
+		sql.append("WHERE 1=1 ");
+		sql.append("AND brandID = " + brandID+" ");
+		sql.append("GROUP By p.productID, i.productID ");
+		return sql.toString();
+	}
+	private String SqlLimitProductsPaginates(int start, int end) {
+		StringBuffer  sql = SqlString();
+		sql.append("LIMIT "+ start +", "+end+" ");
+		return sql.toString();
+	}
+//	Get Data Function
 	public List<ProductsDTO> GetDataProducts(){
 		String sql = SqlProducts(true, true);
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
@@ -60,6 +81,22 @@ public class ProductsDAO extends BaseDAO{
 	}
 	public List<ProductsDTO> GetDataProductsHighlight(){
 		String sql = SqlProducts(false, true);
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
+		return listProducts;
+	}
+	public int BrandIDByName(String brandName) {
+		String sql = SqlBrandIDByName(brandName);
+		int brandID = jdbcTemplate.queryForObject(sql, Integer.class);
+		return brandID;
+	}
+	public List<ProductsDTO> GetAllProductsByID(String brandName){
+		int brandID = BrandIDByName(brandName);
+		String sql = SqlProductByID(brandID);
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
+		return listProducts;
+	}
+	public List<ProductsDTO> GetDataProductsPaginates(int start, int end){
+		String sql = SqlLimitProductsPaginates(start, end);
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}

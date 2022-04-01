@@ -18,8 +18,9 @@ public class BrandServiceImpl implements IBrandService {
 		List<ProductsDTO> productsDTOs = productsDAO.GetAllProductsByID(brandName);
 		return productsDTOs;
 	}
-	public List<ProductsDTO> GetDataProductsPaginates(int start, int end){
-		List<ProductsDTO> productsDTOs = productsDAO.GetDataProductsPaginates(start, end);
+	
+	public List<ProductsDTO> GetDataProductsPaginates(String brandName, int start, int end){
+		List<ProductsDTO> productsDTOs = productsDAO.GetDataProductsPaginates(brandName, start, end);
 		return productsDTOs;
 	}
 

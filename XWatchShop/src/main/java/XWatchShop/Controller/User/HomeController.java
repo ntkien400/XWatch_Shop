@@ -10,7 +10,6 @@ public class HomeController extends BaseController {
 	@RequestMapping(value = {"/","/home-page"})
 	public ModelAndView Index() {
 		mvShare.addObject("slide", homeService.GetDataSlide());
-		mvShare.addObject("brands", homeService.GetDataBrands());
 		mvShare.addObject("products", homeService.GetDataProducts());
 		mvShare.addObject("newproducts", homeService.GetDataNewProducts());
 		mvShare.addObject("highlight", homeService.GetDataProductsHighlight());

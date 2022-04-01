@@ -16,14 +16,27 @@ public class BrandController extends BaseController {
 	private BrandServiceImpl brandService;
 	@Autowired
 	private PaginateServiceImpl paginateService;
+	private int productsPerPage = 6;
 	
 	@RequestMapping(value = "/thuong-hieu/{brandname}")
 	public ModelAndView Brand(@PathVariable String brandname) {
 		mvShare.setViewName("User/product/brand");
 		int totalData = brandService.GetAllProductsByID(brandname).size();
-		PaginatesDTO paginatesData = paginateService.GetPaginatesData(totalData, 9,1);
+		PaginatesDTO paginatesData = paginateService.GetPaginatesData(totalData, productsPerPage,1);
+		mvShare.addObject("brandName", brandname);
 		mvShare.addObject("paginatesData",paginatesData);
-		mvShare.addObject("productsPaginate", brandService.GetDataProductsPaginates(paginatesData.getStart(), paginatesData.getEnd()));
+		mvShare.addObject("productsPaginate", brandService.GetDataProductsPaginates(brandname, paginatesData.getStart(), paginatesData.getEnd()));
+		return mvShare;
+	}
+	
+	@RequestMapping(value = "/thuong-hieu/{brandname}/{currentPage}")
+	public ModelAndView Brand(@PathVariable String brandname, @PathVariable int currentPage ) {
+		mvShare.setViewName("User/product/brand");
+		int totalData = brandService.GetAllProductsByID(brandname).size();
+		PaginatesDTO paginatesData = paginateService.GetPaginatesData(totalData, productsPerPage,currentPage);
+		mvShare.addObject("brandName", brandname);
+		mvShare.addObject("paginatesData",paginatesData);
+		mvShare.addObject("productsPaginate", brandService.GetDataProductsPaginates(brandname, paginatesData.getStart(), paginatesData.getEnd()));
 		return mvShare;
 	}
 }

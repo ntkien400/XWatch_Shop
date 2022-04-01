@@ -46,8 +46,11 @@ Navigation Bar Section
 			</a>
 			<div class="nav-collapse">
 				<ul class="nav">
-					<c:forEach var="item" items="${ menus }">
-						<li class=""><a href="index.html">${ item.menuname }</a></li>
+					<c:forEach var="item" items="${ menus }" varStatus="">
+						<li class="">
+						<a href="<c:url value="${ item.url }"/>">${ item.menuname }</a>
+						</li>
+						
 					</c:forEach>
 				</ul>
 				<form action="#" class="navbar-search pull-left">

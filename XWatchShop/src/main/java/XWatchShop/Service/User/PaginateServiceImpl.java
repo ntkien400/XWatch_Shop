@@ -9,19 +9,19 @@ public class PaginateServiceImpl {
 	public PaginatesDTO GetPaginatesData(int totalData, int limit, int currentPage) {
 		PaginatesDTO paginates = new PaginatesDTO();
 		paginates.setLimit(limit);
-		paginates.setCurrentPage(CheckCurrentPage(currentPage, paginates.getTotalPage()));
 		paginates.setTotalPage(SetTotalPage(totalData, limit));
+		paginates.setCurrentPage(CheckCurrentPage(currentPage, paginates.getTotalPage()));
 		paginates.setStart(FindStart(currentPage, limit));
-		paginates.setEnd(FindEnd(currentPage, limit, totalData));
+		paginates.setEnd(FindEnd(paginates.getStart(), limit, totalData));
 		return paginates;
 	}
 
-	private int FindEnd(int currentPage, int limit, int totalData) {
-		return currentPage * limit > totalData ? totalData : currentPage * limit;
+	private int FindEnd(int start, int limit, int totalData) {
+		return (start + limit) > totalData ? totalData : (start + limit) -1;
 	}
 
 	private int FindStart(int currentPage, int limit) {
-		return ((currentPage-1) * limit +1);
+		return (currentPage-1) * limit +1 ;
 	}
 
 	private int CheckCurrentPage(int currentPage, int totalPage) {

@@ -16,6 +16,7 @@ public class BaseController {
 	@PostConstruct
 	public ModelAndView Init() {
 		mvShare.addObject("menus", homeService.GetDataMenus());
+		mvShare.addObject("brands", homeService.GetDataBrands());
 		return mvShare;
 	}
 }

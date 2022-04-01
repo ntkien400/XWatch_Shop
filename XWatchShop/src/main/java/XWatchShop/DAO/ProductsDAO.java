@@ -56,16 +56,16 @@ public class ProductsDAO extends BaseDAO{
 		sql.append("WHERE b.brandname = '" + brandName +"'" + " ");
 		return sql.toString();
 	}
-	private String SqlProductByID(int brandID) {
+	private StringBuffer SqlProductByID(int brandID) {
 		StringBuffer  sql = SqlString();
 		sql.append("WHERE 1=1 ");
 		sql.append("AND brandID = " + brandID+" ");
 		sql.append("GROUP By p.productID, i.productID ");
-		return sql.toString();
+		return sql;
 	}
-	private String SqlLimitProductsPaginates(int start, int end) {
-		StringBuffer  sql = SqlString();
-		sql.append("LIMIT "+ start +", "+end+" ");
+	private String SqlLimitProductsPaginates(int brandID, int start, int end) {
+		StringBuffer  sql = SqlProductByID(brandID);
+		sql.append("LIMIT "+ (start-1) +", "+end+" ");
 		return sql.toString();
 	}
 //	Get Data Function
@@ -91,12 +91,13 @@ public class ProductsDAO extends BaseDAO{
 	}
 	public List<ProductsDTO> GetAllProductsByID(String brandName){
 		int brandID = BrandIDByName(brandName);
-		String sql = SqlProductByID(brandID);
+		String sql = SqlProductByID(brandID).toString();
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}
-	public List<ProductsDTO> GetDataProductsPaginates(int start, int end){
-		String sql = SqlLimitProductsPaginates(start, end);
+	public List<ProductsDTO> GetDataProductsPaginates(String brandName, int start, int end){
+		int brandID = BrandIDByName(brandName);
+		String sql = SqlLimitProductsPaginates(brandID,start, end);
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}

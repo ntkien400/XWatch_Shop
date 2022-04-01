@@ -12,28 +12,12 @@
 	<div class="row">
 		<div id="sidebar" class="span3">
 			<div class="well well-small">
+				<h3>Thương hiệu</h3>
 				<ul class="nav nav-list">
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Fashion</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Watches</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Fine Jewelry</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Fashion Jewelry</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Engagement & Wedding</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Men's Jewelry</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Vintage & Antique</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Loose Diamonds </a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Loose Beads</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>See All Jewelry & Watches</a></li>
-					<li style="border: 0">&nbsp;</li>
+					<c:forEach var="item" items="${ brands }">
+						<li><a href="<c:url value="/thuong-hieu/${ item.brandname }"/>"><span
+								class="icon-chevron-right"></span>${ item.brandname }</a></li>
+					</c:forEach>
 				</ul>
 			</div>
 
@@ -137,16 +121,18 @@ New Products
 		</div>
 	</div>
 	<div class="pagination">
-		<a href="#">&laquo;</a> 
-		<c:forEach var="item" begin="${ paginatesData.start }" end="${ paginatesData.end }" varStatus="loop">
+		<c:if test="${ paginatesData.totalPage >0}">
+		<a href="<c:url value="/thuong-hieu/${ brandName }/1"/>">&laquo;</a> 
+		<c:forEach var="item" begin="1" end="${ paginatesData.totalPage }" varStatus="loop">
 		<c:if test="${ (loop.index) == paginatesData.currentPage }">
-		<a class="active" href="#">${ loop.index}</a>
+		<a href='<c:url value="/thuong-hieu/${ brandName }/${ loop.index}"/>'class="active">${ loop.index}</a>
 		</c:if>
 		<c:if test="${ (loop.index) != paginatesData.currentPage }">
-		<a href="#">${ loop.index}</a>
+		<a href="<c:url value="/thuong-hieu/${ brandName }/${ loop.index}"/>">${ loop.index}</a>
 		</c:if>
 		</c:forEach>
-		<a href="#">&raquo;</a>
+		<a href=""<c:url value="/thuong-hieu/${ brandName }/${ paginatesData.totalPage }"/>">&raquo;</a>
+		</c:if>
 	</div>
 </body>
 </html>

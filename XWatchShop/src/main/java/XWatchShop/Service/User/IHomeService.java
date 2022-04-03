@@ -19,4 +19,6 @@ public interface IHomeService {
 	public List<ProductsDTO> GetDataProducts();
 	public List<ProductsDTO> GetDataNewProducts();
 	public List<ProductsDTO> GetDataProductsHighlight();
+	public List<ProductsDTO> SearchProducts(String keyword);
+	public List<ProductsDTO> SearchProductsPaginate(String keyword, int start, int productsPerPage);
 }

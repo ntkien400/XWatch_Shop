@@ -21,7 +21,7 @@ public class PaginateServiceImpl {
 	}
 
 	private int FindStart(int currentPage, int limit) {
-		return (currentPage-1) * limit +1 ;
+		return (currentPage-1) * limit ;
 	}
 
 	private int CheckCurrentPage(int currentPage, int totalPage) {

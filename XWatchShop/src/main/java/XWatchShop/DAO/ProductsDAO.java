@@ -21,6 +21,8 @@ public class ProductsDAO extends BaseDAO{
 		sql.append("p.strap_material, ");
 		sql.append("p.water_resistant, ");
 		sql.append("p.color, ");
+		sql.append("p.amount, ");
+		sql.append("p.gender, ");
 		sql.append("p.sale, ");
 		sql.append("p.highlight, ");
 		sql.append("p.new_product, ");
@@ -35,7 +37,7 @@ public class ProductsDAO extends BaseDAO{
 		return sql;
 	}
 	
-	private String SqlProducts(boolean newProduct, boolean highLight) {
+	private StringBuffer SqlProducts(boolean newProduct, boolean highLight) {
 		StringBuffer  sql = SqlString();
 		if(newProduct) {
 			sql.append("WHERE p.new_product = true ");
@@ -45,8 +47,7 @@ public class ProductsDAO extends BaseDAO{
 		}
 		sql.append("GROUP By p.productID, i.productID ");
 		sql.append("ORDER BY RAND() ");
-		
-		return sql.toString();
+		return sql;
 	}
 	private String SqlBrandIDByName(String brandName) {
 		StringBuffer  sql = new StringBuffer();
@@ -56,31 +57,53 @@ public class ProductsDAO extends BaseDAO{
 		sql.append("WHERE b.brandname = '" + brandName +"'" + " ");
 		return sql.toString();
 	}
-	private StringBuffer SqlProductByID(int brandID) {
+	private StringBuffer SqlProductsByID(int brandID) {
 		StringBuffer  sql = SqlString();
 		sql.append("WHERE 1=1 ");
 		sql.append("AND brandID = " + brandID+" ");
 		sql.append("GROUP By p.productID, i.productID ");
 		return sql;
 	}
-	private String SqlLimitProductsPaginates(int brandID, int start, int end) {
-		StringBuffer  sql = SqlProductByID(brandID);
-		sql.append("LIMIT "+ (start-1) +", "+end+" ");
+	private String SqlLimitProductsPaginates(int brandID, int start, int totalPage) {
+		StringBuffer  sql = SqlProductsByID(brandID);
+		sql.append("LIMIT "+ start +", "+totalPage+" ");
 		return sql.toString();
 	}
-//	Get Data Function
+	private String SqlProductByID(String productID) {
+		StringBuffer  sql = SqlString();
+		sql.append("WHERE 1=1 ");
+		sql.append("AND p.productID = '" + productID+"' ");
+		return sql.toString();
+	}
+	private String SqlGetImagesByID(String productID) {
+		StringBuffer  sql = SqlString();
+		sql.append("WHERE p.productID = '" + productID +"'" + " ");
+		return sql.toString();
+	}
+
+//	----------Get Data Function-------------
+	public List<ProductsDTO> GetImagesByID(String productID){
+		String sql = SqlGetImagesByID(productID);
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
+		return listProducts;
+	}
+	public List<ProductsDTO> GetProductByID(String productID){
+		String sql = SqlProductByID(productID);
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
+		return listProducts;
+	}
 	public List<ProductsDTO> GetDataProducts(){
-		String sql = SqlProducts(true, true);
+		String sql = SqlProducts(true, true).toString();
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}
 	public List<ProductsDTO> GetDataNewProducts(){
-		String sql = SqlProducts(true, false);
+		String sql = SqlProducts(true, false).toString();
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}
 	public List<ProductsDTO> GetDataProductsHighlight(){
-		String sql = SqlProducts(false, true);
+		String sql = SqlProducts(false, true).toString();
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}
@@ -91,14 +114,50 @@ public class ProductsDAO extends BaseDAO{
 	}
 	public List<ProductsDTO> GetAllProductsByID(String brandName){
 		int brandID = BrandIDByName(brandName);
-		String sql = SqlProductByID(brandID).toString();
+		String sql = SqlProductsByID(brandID).toString();
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}
-	public List<ProductsDTO> GetDataProductsPaginates(String brandName, int start, int end){
+	public List<ProductsDTO> GetAllProducts(){
+		StringBuffer sql = SqlProducts(false, false);
+		sql.append("LIMIT 5");
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql.toString(), new ProductsDTOMapper());
+		return listProducts;
+	}
+	public List<ProductsDTO> GetDataProductsPaginates(String brandName, int start, int productsPerPage){
 		int brandID = BrandIDByName(brandName);
-		String sql = SqlLimitProductsPaginates(brandID,start, end);
+		String sql = SqlLimitProductsPaginates(brandID,start, productsPerPage);
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
+	}
+
+	public List<ProductsDTO> SearchProducts(String keyword ) {
+		StringBuffer sql = SqlProducts(false, false);
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql.toString(), new ProductsDTOMapper());
+		sql.append("LIMIT 0");
+		List<ProductsDTO> list = jdbcTemplate.query(sql.toString(), new ProductsDTOMapper());
+		for (ProductsDTO productsDTO : listProducts) {
+			if(productsDTO.getName().toLowerCase().contains(keyword.toLowerCase()) == true ) {
+				list.add(productsDTO);
+			}
+		}
+		return list;
+	}
+	public List<ProductsDTO> SearchProductsPaginate(String keyword, int start, int productsPerPage ) {
+		StringBuffer sql = SqlProducts(false, false);
+		List<ProductsDTO> listProducts = SearchProducts(keyword);
+		sql.append("LIMIT 0");
+		List<ProductsDTO> listSearch = jdbcTemplate.query(sql.toString(), new ProductsDTOMapper());
+		if((start+productsPerPage) <= listProducts.size()) {
+			for( int i= start; i< (start + productsPerPage); i++) {
+				listSearch.add(listProducts.get(i));
+			}
+		}
+		if((start+productsPerPage) > listProducts.size()) {
+			for( int i= start; i< listProducts.size(); i++) {
+				listSearch.add(listProducts.get(i));
+			}
+		}
+		return listSearch;
 	}
 }

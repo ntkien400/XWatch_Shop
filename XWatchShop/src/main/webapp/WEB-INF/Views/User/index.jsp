@@ -17,10 +17,6 @@ Body Section
 						<li><a href="<c:url value="/thuong-hieu/${ item.brandname }"/>"><span
 								class="icon-chevron-right"></span>${ item.brandname }</a></li>
 					</c:forEach>
-<!-- 					<li><a class="totalInCart" href="cart.html"><strong>Total
-								Amount <span class="badge badge-warning pull-right"
-								style="line-height: 18px;">$448.42</span>
-						</strong></a></li> -->
 				</ul>
 			</div>
 

@@ -53,8 +53,8 @@ Navigation Bar Section
 						
 					</c:forEach>
 				</ul>
-				<form action="#" class="navbar-search pull-left">
-					<input type="text" placeholder="Search" class="search-query span2">
+				<form action="<c:url value="/search"/>" class="navbar-search pull-left">
+					<input type="text" placeholder="Tìm kiếm" name="keyword" class="search-query span2">
 				</form>
 				<ul class="nav pull-right">
 					<li class="dropdown"><a data-toggle="dropdown"

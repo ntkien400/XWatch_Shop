@@ -19,6 +19,8 @@ public class ProductsDTOMapper implements RowMapper<ProductsDTO> {
 		productsDTO.setStrap_material(rs.getString("strap_material"));
 		productsDTO.setWater_resistant(rs.getInt("water_resistant"));
 		productsDTO.setColor(rs.getString("color"));
+		productsDTO.setAmount(rs.getInt("amount"));
+		productsDTO.setGender(rs.getInt("gender"));
 		productsDTO.setSale(rs.getInt("sale"));
 		productsDTO.setHighlight(rs.getBoolean("highlight"));
 		productsDTO.setNew_product(rs.getBoolean("new_product"));

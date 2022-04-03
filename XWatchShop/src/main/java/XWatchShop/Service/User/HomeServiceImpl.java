@@ -52,4 +52,14 @@ public class HomeServiceImpl implements IHomeService {
 		List<ProductsDTO> listProducts = productsDAO.GetDataProductsHighlight();
 		return listProducts;
 	}
+	@Override
+	public List<ProductsDTO> SearchProducts(String keyword) {
+		List<ProductsDTO> listSearch = productsDAO.SearchProducts(keyword);
+		return listSearch;
+	}
+	@Override
+	public List<ProductsDTO> SearchProductsPaginate(String keyword, int start, int productsPerPage) {
+		List<ProductsDTO> listSearch = productsDAO.SearchProductsPaginate(keyword, start, productsPerPage);
+		return listSearch;
+	}
 }

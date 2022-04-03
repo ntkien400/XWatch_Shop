@@ -25,7 +25,7 @@ public class BrandController extends BaseController {
 		PaginatesDTO paginatesData = paginateService.GetPaginatesData(totalData, productsPerPage,1);
 		mvShare.addObject("brandName", brandname);
 		mvShare.addObject("paginatesData",paginatesData);
-		mvShare.addObject("productsPaginate", brandService.GetDataProductsPaginates(brandname, paginatesData.getStart(), paginatesData.getEnd()));
+		mvShare.addObject("productsPaginate", brandService.GetDataProductsPaginates(brandname, paginatesData.getStart(), productsPerPage));
 		return mvShare;
 	}
 	
@@ -36,7 +36,7 @@ public class BrandController extends BaseController {
 		PaginatesDTO paginatesData = paginateService.GetPaginatesData(totalData, productsPerPage,currentPage);
 		mvShare.addObject("brandName", brandname);
 		mvShare.addObject("paginatesData",paginatesData);
-		mvShare.addObject("productsPaginate", brandService.GetDataProductsPaginates(brandname, paginatesData.getStart(), paginatesData.getEnd()));
+		mvShare.addObject("productsPaginate", brandService.GetDataProductsPaginates(brandname, paginatesData.getStart(), productsPerPage));
 		return mvShare;
 	}
 }

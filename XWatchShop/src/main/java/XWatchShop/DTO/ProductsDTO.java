@@ -13,6 +13,8 @@ public class ProductsDTO {
 	private String strap_material;
 	private int water_resistant;
 	private String color;
+	private int amount;
+	private int gender;
 	private boolean highlight;
 	private boolean new_product;
 	private String title;
@@ -131,6 +133,18 @@ public class ProductsDTO {
 	}
 	public void setUpdated_at(Date updated_at) {
 		this.updated_at = updated_at;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public int getGender() {
+		return gender;
+	}
+	public void setGender(int gender) {
+		this.gender = gender;
 	}
 	
 }

@@ -76,7 +76,7 @@
 New Products
 -->
 			<div class="well well-small">
-				<h3>Our Products</h3>
+				<h3>Danh sách sản phẩm</h3>
 				<c:if test="${ productsPaginate.size() >0 }">
 					<div class="row-fluid">
 						<ul class="thumbnails">
@@ -86,7 +86,7 @@ New Products
 										<a href="product_details.html" class="overlay"></a> <a
 											class="zoomTool" href="product_details.html"
 											title="add to cart"><span class="icon-search"></span>
-											QUICK VIEW</a> <a href="product_details.html"><img
+											QUICK VIEW</a> <a href="/XWatchShop/chi-tiet-san-pham/${ item.productID }"><img
 											src="<c:url value ="/assets/user/watch/${ item.image_name }"/>" alt=""></a>
 										<div class="caption cntr">
 											<p>${ item.name }</p>

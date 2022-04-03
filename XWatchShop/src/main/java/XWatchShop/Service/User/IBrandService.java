@@ -9,5 +9,5 @@ import XWatchShop.DTO.ProductsDTO;
 @Service
 public interface IBrandService {
 	public List<ProductsDTO> GetAllProductsByID(String brandName);
-	public List<ProductsDTO> GetDataProductsPaginates(String brandName, int start, int end);
+	public List<ProductsDTO> GetDataProductsPaginates(String brandName, int start, int productsPerPage);
 }

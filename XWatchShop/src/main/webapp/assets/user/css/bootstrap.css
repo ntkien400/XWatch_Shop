@@ -6187,3 +6187,6 @@ a.badge:focus {
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+.product-content{
+	overflow-x: hidden;
+}

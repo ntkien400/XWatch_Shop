@@ -29,7 +29,7 @@ public class HomeController extends BaseController {
 	public ModelAndView Search(@RequestParam("keyword") String keyword) {
 		mvShare.addObject("search", homeService.SearchProducts(keyword));
 		int totalData = homeService.SearchProducts(keyword).size();
-		PaginatesDTO paginatesData = paginateService.GetPaginatesData(totalData, 6,1);
+		PaginatesDTO paginatesData = paginateService.GetPaginatesData(totalData, productsPerPage,1);
 		mvShare.addObject("paginatesData",paginatesData);
 		mvShare.addObject("keyword",keyword);
 		mvShare.addObject("searchPaginate", homeService.SearchProductsPaginate(keyword, paginatesData.getStart(), productsPerPage));

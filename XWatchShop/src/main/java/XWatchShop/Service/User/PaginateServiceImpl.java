@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import XWatchShop.DTO.PaginatesDTO;
 
 @Service
-public class PaginateServiceImpl {
+public class PaginateServiceImpl implements IPaginateService {
 	public PaginatesDTO GetPaginatesData(int totalData, int limit, int currentPage) {
 		PaginatesDTO paginates = new PaginatesDTO();
 		paginates.setLimit(limit);

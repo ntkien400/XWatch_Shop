@@ -1,21 +1,30 @@
 package XWatchShop.Controller.User;
 
 import javax.management.ConstructorParameters;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.objenesis.instantiator.basic.NewInstanceInstantiator;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import XWatchShop.DTO.PaginatesDTO;
+import XWatchShop.Entity.Users;
+import XWatchShop.Service.User.UserServiceImpl;
 
 @Controller
 public class HomeController extends BaseController {
 	private int productsPerPage = 6;
+	@Autowired
+	private UserServiceImpl userService = new UserServiceImpl();
 	
-	@RequestMapping(value = {"/","/home-page"})
+	@RequestMapping(value = {"/","/trang-chu"}, method = RequestMethod.GET)
 	public ModelAndView Index() {
 		mvShare.addObject("slide", homeService.GetDataSlide());
 		mvShare.addObject("products", homeService.GetDataProducts());
@@ -24,6 +33,7 @@ public class HomeController extends BaseController {
 		mvShare.setViewName("User/index");
 		return mvShare;
 	}
+
 	
 	@RequestMapping(value={"/search"})
 	public ModelAndView Search(@RequestParam("keyword") String keyword) {

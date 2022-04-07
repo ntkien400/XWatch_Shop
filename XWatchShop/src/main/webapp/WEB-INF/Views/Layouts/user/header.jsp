@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@include file="/WEB-INF/Views/Layouts/user/taglib.jsp" %>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <header id="header">
@@ -23,13 +23,10 @@
 		</div>
 		<div class="span4 alignR">
 			<p>
-				<br> <strong> Support (24/7) : 0800 1234 678 </strong><br>
+				<br> <strong> Support (24/7) : 0123 4567 890 </strong><br>
 				<br>
 			</p>
-			<span class="btn btn-mini">[ 2 ] <span
-				class="icon-shopping-cart"></span></span> <span
-				class="btn btn-warning btn-mini">$</span> <span class="btn btn-mini">&pound;</span>
-			<span class="btn btn-mini">&euro;</span>
+			
 		</div>
 	</div>
 </header>
@@ -54,32 +51,9 @@ Navigation Bar Section
 					</c:forEach>
 				</ul>
 				<form action="<c:url value="/search"/>" class="navbar-search pull-left">
-					<input type="text" placeholder="Tìm kiếm" name="keyword" class="search-query span2">
+					<input type="text" placeholder="Tìm kiếm" name="keyword" class="search-query span5">
 				</form>
-				<ul class="nav pull-right">
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"><i class="material-icons" style="font-size: 15px">person</i>
-							Đăng nhập <b class="caret"></b></a>
-						<div class="dropdown-menu">
-							<form class="form-horizontal loginFrm">
-								<div class="control-group">
-									<input type="text" class="span2" id="inputEmail"
-										placeholder="Email">
-								</div>
-								<div class="control-group">
-									<input type="password" class="span2" id="inputPassword"
-										placeholder="Password">
-								</div>
-								<div class="control-group">
-									<label class="checkbox"> <input type="checkbox">
-										Remember me
-									</label>
-									<button type="submit" class="shopBtn btn-block">Sign
-										in</button>
-								</div>
-							</form>
-						</div></li>
-				</ul>
+				
 			</div>
 		</div>
 	</div>

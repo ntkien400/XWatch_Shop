@@ -82,7 +82,6 @@
 			</ul>
 
 		</div>
-		<h5 style="color:red;">${ status }</h5>
 		<div class="span4">
 			<div class="well">
 				<h5>Đăng nhập</h5>

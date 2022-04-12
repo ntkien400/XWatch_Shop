@@ -121,7 +121,7 @@ New Products
 								<c:forEach var="item" items="${ newproducts }" varStatus="loop">
 									<li class="span4">
 										<div class="thumbnail">
-											<a class="zoomTool" href="product_details.html"
+											<a class="zoomTool" href="<c:url value="chi-tiet-san-pham/${ item.productID }"/>"
 												title="add to cart"><span class="icon-search"></span>
 												QUICK VIEW</a> <a href="chi-tiet-san-pham/${ item.productID }"><img
 												src="<c:url value="/assets/user/watch/${ item.image_name }"/>"
@@ -129,12 +129,12 @@ New Products
 											<div class="caption">
 												<h5>${ item.name }</h5>
 												<h4>
-													<a class="defaultBtn" href="product_details.html"
+													<a class="defaultBtn" href="<c:url value="chi-tiet-san-pham/${ item.productID }"/>"
 														title="Click to view"><span class="icon-zoom-in"></span></a>
-													<a class="shopBtn" href="#" title="add to cart"><span
-														class="icon-plus"></span></a> <span class="pull-right"><fmt:formatNumber
-															type="number" groupingUsed="true"
-															value="${ item.price*(100-item.sale)/100 }" />đ</span>
+													<a class="shopBtn" href="<c:url value="/add-cart/${ item.productID }"/>"
+													 title="thêm vào giỏ"><span class="icon-shopping-cart"></span></a> 
+													 <span class="pull-right"><fmt:formatNumber type="number" groupingUsed="true"
+														value="${ item.price*(100-item.sale)/100 }" />đ</span>
 												</h4>
 											</div>
 									</li>
@@ -174,20 +174,20 @@ New Products
 								<c:forEach var="item" items="${ highlight }" varStatus="loop">
 									<li class="span4">
 										<div class="thumbnail">
-											<a class="zoomTool" href="product_details.html"
+											<a class="zoomTool" href="<c:url value="chi-tiet-san-pham/${ item.productID }"/>"
 												title="add to cart"><span class="icon-search"></span>
-												QUICK VIEW</a> <a href="chi-tiet-san-pham/${ item.productID }"><img
+												QUICK VIEW</a> <a href="<c:url value="chi-tiet-san-pham/${ item.productID }"/>"><img
 												src="<c:url value="/assets/user/watch/${ item.image_name }"/>"
 												alt=""></a>
 											<div class="caption">
 												<h5>${ item.name }</h5>
 												<h4>
-													<a class="defaultBtn" href="product_details.html"
+													<a class="defaultBtn" href="<c:url value="chi-tiet-san-pham/${ item.productID }"/>"
 														title="Click to view"><span class="icon-zoom-in"></span></a>
-													<a class="shopBtn" href="#" title="add to cart"><span
-														class="icon-plus"></span></a> <span class="pull-right"><fmt:formatNumber
-															type="number" groupingUsed="true"
-															value="${ item.price*(100-item.sale)/100 }" />đ</span>
+													<a class="shopBtn" href="<c:url value="/add-cart/${ item.productID }"/>"
+													 title="thêm vào giỏ"><span class="icon-shopping-cart"></span></a> 
+													 <span class="pull-right"><fmt:formatNumber type="number" groupingUsed="true"
+														value="${ item.price*(100-item.sale)/100 }" />đ</span>
 												</h4>
 											</div>
 										</div>

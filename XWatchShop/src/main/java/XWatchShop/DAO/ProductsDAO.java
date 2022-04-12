@@ -73,6 +73,7 @@ public class ProductsDAO extends BaseDAO{
 		StringBuffer  sql = SqlString();
 		sql.append("WHERE 1=1 ");
 		sql.append("AND p.productID = '" + productID+"' ");
+		sql.append("GROUP By p.productID, i.productID ");
 		return sql.toString();
 	}
 	private String SqlGetImagesByID(String productID) {

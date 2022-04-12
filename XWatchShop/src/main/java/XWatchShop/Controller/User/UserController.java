@@ -24,6 +24,7 @@ public class UserController extends BaseController  {
 		mvShare.addObject("user", new Users());
 		return mvShare;
 	}
+	
 	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST)
 	public ModelAndView CreateUser(@ModelAttribute("user") Users user) {
 		int count = userService.AddUser(user);

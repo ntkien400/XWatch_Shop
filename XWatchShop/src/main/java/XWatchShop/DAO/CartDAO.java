@@ -21,12 +21,14 @@ public class CartDAO extends BaseDAO {
 		if(product != null && !shoppingCart.containsKey(productID)) {
 			itemCart.setProduct(product);
 			itemCart.setQuantity(quantity);
-			double totalPrice = product.getPrice() * quantity;
+			double totalPrice = product.getPrice() *(100- product.getSale())/100 * quantity;
 			itemCart.setTotalPrice(totalPrice);
 		}
-		if(shoppingCart.containsKey(productID)) {
+		if(product != null && shoppingCart.containsKey(productID)) {
 			itemCart = shoppingCart.get(productID);
 			itemCart.setQuantity(itemCart.getQuantity() + quantity);
+			double totalPrice = product.getPrice() * (100- product.getSale())/100 * itemCart.getQuantity();
+			itemCart.setTotalPrice(totalPrice);
 		}
 		shoppingCart.put(productID, itemCart);
 		return shoppingCart;
@@ -40,7 +42,7 @@ public class CartDAO extends BaseDAO {
 		if(shoppingCart.containsKey(productID)) {
 			itemCart = shoppingCart.get(productID);
 			itemCart.setQuantity(quantity);
-			double totalPrice = itemCart.getProduct().getPrice() * quantity;
+			double totalPrice = itemCart.getProduct().getPrice() * (100- itemCart.getProduct().getSale())/100 * quantity;
 			itemCart.setTotalPrice(totalPrice);
 		}
 		shoppingCart.put(productID, itemCart);

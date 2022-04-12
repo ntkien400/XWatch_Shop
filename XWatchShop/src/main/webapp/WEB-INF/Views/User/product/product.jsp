@@ -111,12 +111,12 @@ Body Section
 				<h3>${ product.name }</h3>
 				<hr class="soft"/>
 				
-				<form class="form-horizontal qtyFrm">
+				<form class="form-horizontal qtyFrm" method="get" action="<c:url value="/add-cart/${ product.productID }"/>">
 				  <div class="control-group">
 					<label class="control-label"><span><fmt:formatNumber
 						type="number" groupingUsed="true" value="${ product.price*(100-product.sale)/100 }" />đ</span></label>
 					<div class="controls">
-					<input type="number" min="0" max="${ product.amount }" class="span6" value="1">
+						<input name="qty" type="number" min="0" max="${ product.amount }" class="span6" value="1">
 					</div>
 				  </div>
 				

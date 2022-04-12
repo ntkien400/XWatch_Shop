@@ -3,10 +3,11 @@ package XWatchShop.Service.User;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import XWatchShop.DAO.CartDAO;
 import XWatchShop.DTO.CartDTO;
-
+@Service
 public class CartServiceImpl implements ICartService {
 	@Autowired
 	private CartDAO cartDAO;

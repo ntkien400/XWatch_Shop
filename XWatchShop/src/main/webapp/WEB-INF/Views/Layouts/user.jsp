@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,9 +50,17 @@
 						<a href="<c:url value="/dang-ky"/>"><span class="icon-edit"></span> Đăng ký </a> 
 						<a href="<c:url value="/dang-nhap"/>"><span class="icon-lock"></span> Đăng nhập </a>
 					</c:if>
-					<a href="<c:url value="/dang-ky"/>"><span class="icon-envelope"></span>Contact us</a> 
-					<a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
-						class="badge badge-warning"> $448.42</span></a>
+					<a href="<c:url value="/dang-ky"/>"><span class="icon-envelope"></span>Contact us</a>
+					<c:if test="${ empty CartQty }">
+						<a href="<c:url value="/gio-hang"/>"><span class="icon-shopping-cart"></span> 0 <span
+						class="badge badge-warning"><fmt:formatNumber
+						type="number" groupingUsed="true" value="0" />đ</span></a>
+					</c:if> 
+					<c:if test="${ not empty CartQty }">
+						<a href="<c:url value="/gio-hang"/>"><span class="icon-shopping-cart"></span> ${ CartQty } <span
+							class="badge badge-warning"><fmt:formatNumber
+							type="number" groupingUsed="true" value="${ CartTotalPrice }" />đ</span></a>
+					</c:if> 
 				</div>
 			</div>
 		</div>
@@ -94,5 +103,6 @@ Lower Header Section
 	<script
 		src="<c:url value="/assets/user/js/jquery.scrollTo-1.4.3.1-min.js"/>"></script>
 	<script src="<c:url value="/assets/user/js/shop.js"/>"></script>
+	<decorator:getProperty property="page.script"></decorator:getProperty>
 </body>
 </html>

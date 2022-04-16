@@ -60,16 +60,17 @@
 				</table>
 				<br /> 
 				<a href="<c:url value ="/trang-chu"/>" class="shopBtn btn-large"><span
-					class="icon-arrow-left"></span> Tiếp tục mua sắm </a> 
-				<c:if test="${ empty LoginInfo}">
-					<a href="<c:url value ="/dang-nhap"/>" class="shopBtn btn-large pull-right">Thanh
-					toán<span class="icon-arrow-right"></span></a>
+					class="icon-arrow-left"></span> Tiếp tục mua sắm </a>
+				<c:if test="${ not empty ShoppingCart }"> 
+					<c:if test="${ empty LoginInfo }">
+						<a href="<c:url value ="/dang-nhap"/>" class="shopBtn btn-large pull-right">Thanh
+						toán<span class="icon-arrow-right"></span></a>
+					</c:if>
+					<c:if test="${ not empty LoginInfo}">
+						<a href="<c:url value ="/thanh-toan"/>" class="shopBtn btn-large pull-right">Thanh
+						toán<span class="icon-arrow-right"></span></a>
+					</c:if>
 				</c:if>
-				<c:if test="${ not empty LoginInfo && not empty ShoppingCart}">
-					<a href="<c:url value ="/thanh-toan"/>" class="shopBtn btn-large pull-right">Thanh
-					toán<span class="icon-arrow-right"></span></a>
-				</c:if>
-
 			</div>
 		</div>
 	</div>

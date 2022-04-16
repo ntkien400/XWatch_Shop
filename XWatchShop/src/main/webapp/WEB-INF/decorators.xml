@@ -5,6 +5,6 @@
 	</decorator>
 	<decorator name="admin" page="admin.jsp">
 		<!-- Đường dẫn html -->
-		<pattern>/admin/*</pattern>
+		<pattern>/admin*</pattern>
 	</decorator>
 </decorators>

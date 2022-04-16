@@ -15,8 +15,8 @@ public class ProductServiceImpl implements IProductService {
 	
 	@Override
 	public ProductsDTO GetProductByID(String productID) {
-		List<ProductsDTO> lisProducts = productsDAO.GetProductByID(productID);
-		return lisProducts.get(0);
+		ProductsDTO Product = productsDAO.GetProductByID(productID);
+		return Product;
 	}
 
 	@Override
@@ -26,8 +26,8 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public List<ProductsDTO> GetAllProducts() {
-		List<ProductsDTO> listProducts = productsDAO.GetAllProducts();
+	public List<ProductsDTO> Get5Products() {
+		List<ProductsDTO> listProducts = productsDAO.Get5Products();
 		return listProducts;
 	}
 	

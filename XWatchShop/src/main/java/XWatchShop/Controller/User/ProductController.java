@@ -19,7 +19,7 @@ public class ProductController extends BaseController {
 	public ModelAndView Product(@PathVariable String productID) {
 		mvShare.addObject("product", productService.GetProductByID(productID));
 		mvShare.addObject("images", productService.GetImagesByID(productID));
-		mvShare.addObject("products", productService.GetAllProducts());
+		mvShare.addObject("products", productService.Get5Products());
 		mvShare.setViewName("User/product/product");
 		return mvShare;
 	}

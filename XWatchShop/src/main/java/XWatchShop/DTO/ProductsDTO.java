@@ -6,6 +6,8 @@ public class ProductsDTO {
 	private String productID;
 	private int seriesID;
 	private int brandID;
+	private String brandname;
+	private String seriesname;
 	private String name;
 	private double price;
 	private int sale;
@@ -19,8 +21,7 @@ public class ProductsDTO {
 	private boolean new_product;
 	private String title;
 	private String detail;
-	private int imageID;
-	private String image_name;
+	private String image;
 	private Date created_at;
 	private Date updated_at;
 	public ProductsDTO() {
@@ -43,6 +44,18 @@ public class ProductsDTO {
 	}
 	public void setBrandID(int brandID) {
 		this.brandID = brandID;
+	}
+	public String getBrandname() {
+		return brandname;
+	}
+	public void setBrandname(String brandname) {
+		this.brandname = brandname;
+	}
+	public String getSeriesname() {
+		return seriesname;
+	}
+	public void setSeriesname(String seriesname) {
+		this.seriesname = seriesname;
 	}
 	public String getName() {
 		return name;
@@ -86,6 +99,18 @@ public class ProductsDTO {
 	public void setColor(String color) {
 		this.color = color;
 	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public int getGender() {
+		return gender;
+	}
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
 	public boolean isHighlight() {
 		return highlight;
 	}
@@ -110,17 +135,11 @@ public class ProductsDTO {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-	public int getImageID() {
-		return imageID;
+	public String getImage() {
+		return image;
 	}
-	public void setImageID(int imageID) {
-		this.imageID = imageID;
-	}
-	public String getImage_name() {
-		return image_name;
-	}
-	public void setImage_name(String image_name) {
-		this.image_name = image_name;
+	public void setImage(String image) {
+		this.image = image;
 	}
 	public Date getCreated_at() {
 		return created_at;
@@ -134,17 +153,6 @@ public class ProductsDTO {
 	public void setUpdated_at(Date updated_at) {
 		this.updated_at = updated_at;
 	}
-	public int getAmount() {
-		return amount;
-	}
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-	public int getGender() {
-		return gender;
-	}
-	public void setGender(int gender) {
-		this.gender = gender;
-	}
+	
 	
 }

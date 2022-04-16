@@ -124,7 +124,7 @@ New Products
 											<a class="zoomTool" href="<c:url value="chi-tiet-san-pham/${ item.productID }"/>"
 												title="add to cart"><span class="icon-search"></span>
 												QUICK VIEW</a> <a href="chi-tiet-san-pham/${ item.productID }"><img
-												src="<c:url value="/assets/user/watch/${ item.image_name }"/>"
+												src="<c:url value="/assets/user/watch/${ item.image }"/>"
 												alt=""></a>
 											<div class="caption">
 												<h5>${ item.name }</h5>
@@ -177,7 +177,7 @@ New Products
 											<a class="zoomTool" href="<c:url value="chi-tiet-san-pham/${ item.productID }"/>"
 												title="add to cart"><span class="icon-search"></span>
 												QUICK VIEW</a> <a href="<c:url value="chi-tiet-san-pham/${ item.productID }"/>"><img
-												src="<c:url value="/assets/user/watch/${ item.image_name }"/>"
+												src="<c:url value="/assets/user/watch/${ item.image }"/>"
 												alt=""></a>
 											<div class="caption">
 												<h5>${ item.name }</h5>

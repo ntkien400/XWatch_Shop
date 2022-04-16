@@ -98,13 +98,12 @@ Body Section
                 			<c:if test="${ not loop.first }">
                 				<div class="item">
                 			</c:if>
-                			<a href="#"> <img src="<c:url value ="/assets/user/watch/${ item.image_name }"/>" alt="" style="width:100%"></a>
+                			<a href="#"> <img src="<c:url value ="/assets/user/watch/${ item.image }"/>" alt="" style="width:100%"></a>
                 			</div>
                 		</c:forEach>
                 	</c:if>
                 </div>
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                
             </div>
 			</div>
 			<div class="span7">
@@ -155,7 +154,7 @@ Body Section
 			<hr class="soft">
 			<div class="row-fluid">
 			<div class="span2">
-				<img src="<c:url value="/assets/user/watch/${ item.image_name }"/>" alt="">
+				<img src="<c:url value="/assets/user/watch/${ item.image }"/>" alt="">
 			</div>
 			<div class="span6">
 				<h5>${ item.name }</h5>

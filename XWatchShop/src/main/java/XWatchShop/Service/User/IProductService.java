@@ -10,5 +10,5 @@ import XWatchShop.DTO.ProductsDTO;
 public interface IProductService {
 	public ProductsDTO GetProductByID(String productID);
 	public List<ProductsDTO> GetImagesByID(String productID);
-	public List<ProductsDTO> GetAllProducts();
+	public List<ProductsDTO> Get5Products();
 }

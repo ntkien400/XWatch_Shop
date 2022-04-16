@@ -86,7 +86,7 @@ New Products
 											class="zoomTool" href="product_details.html"
 											title="add to cart"><span class="icon-search"></span>
 											QUICK VIEW</a> <a href="/XWatchShop/chi-tiet-san-pham/${ item.productID }"><img
-											src="<c:url value ="/assets/user/watch/${ item.image_name }"/>" alt=""></a>
+											src="<c:url value ="/assets/user/watch/${ item.image }"/>" alt=""></a>
 										<div class="caption cntr">
 											<p>${ item.name }</p>
 											<p>

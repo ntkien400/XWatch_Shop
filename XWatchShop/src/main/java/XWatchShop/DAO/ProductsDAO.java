@@ -1,6 +1,9 @@
 package XWatchShop.DAO;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.lang.model.element.UnknownAnnotationValueException;
 
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +18,8 @@ public class ProductsDAO extends BaseDAO{
 		sql.append("p.productID, ");
 		sql.append("p.seriesID, ");
 		sql.append("p.brandID, ");
+		sql.append("b.brandname, ");
+		sql.append("s.seriesname, ");
 		sql.append("p.name, ");
 		sql.append("p.price, ");
 		sql.append("p.glass, ");
@@ -28,12 +33,12 @@ public class ProductsDAO extends BaseDAO{
 		sql.append("p.new_product, ");
 		sql.append("p.title, ");
 		sql.append("p.detail, ");
-		sql.append("i.imageID, ");
-		sql.append("i.image_name, ");
+		sql.append("p.image, ");
 		sql.append("p.created_at, ");
 		sql.append("p.updated_at ");
-		sql.append("FROM products AS p INNER JOIN images AS i ");
-		sql.append("ON p.productID = i.productID ");
+		sql.append("FROM products AS p  ");
+		sql.append("INNER JOIN brands as b ON p.brandID = b.brandID ");
+		sql.append("INNER JOIN series as s ON p.seriesID = s.seriesID ");
 		return sql;
 	}
 	
@@ -45,7 +50,7 @@ public class ProductsDAO extends BaseDAO{
 		if(highLight) {
 			sql.append("AND p.highlight = true ");
 		}
-		sql.append("GROUP By p.productID, i.productID ");
+		sql.append("GROUP By p.productID, b.brandID, s.seriesID ");
 		sql.append("ORDER BY RAND() ");
 		return sql;
 	}
@@ -60,8 +65,8 @@ public class ProductsDAO extends BaseDAO{
 	private StringBuffer SqlProductsByID(int brandID) {
 		StringBuffer  sql = SqlString();
 		sql.append("WHERE 1=1 ");
-		sql.append("AND brandID = " + brandID+" ");
-		sql.append("GROUP By p.productID, i.productID ");
+		sql.append("AND p.brandID = " + brandID+" ");
+		sql.append("GROUP By p.productID, b.brandID, s.seriesID ");
 		return sql;
 	}
 	private String SqlLimitProductsPaginates(int brandID, int start, int totalPage) {
@@ -73,7 +78,7 @@ public class ProductsDAO extends BaseDAO{
 		StringBuffer  sql = SqlString();
 		sql.append("WHERE 1=1 ");
 		sql.append("AND p.productID = '" + productID+"' ");
-		sql.append("GROUP By p.productID, i.productID ");
+		sql.append("GROUP By p.productID, b.brandID, s.seriesID ");
 		return sql.toString();
 	}
 	private String SqlGetImagesByID(String productID) {
@@ -88,10 +93,10 @@ public class ProductsDAO extends BaseDAO{
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}
-	public List<ProductsDTO> GetProductByID(String productID){
+	public ProductsDTO GetProductByID(String productID){
 		String sql = SqlProductByID(productID);
-		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
-		return listProducts;
+		ProductsDTO Product = jdbcTemplate.queryForObject(sql, new ProductsDTOMapper());
+		return Product;
 	}
 	public List<ProductsDTO> GetDataProducts(){
 		String sql = SqlProducts(true, true).toString();
@@ -113,15 +118,29 @@ public class ProductsDAO extends BaseDAO{
 		int brandID = jdbcTemplate.queryForObject(sql, Integer.class);
 		return brandID;
 	}
+	public String BrandNameByID(int brandID) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT brandname ");
+		sql.append("FROM brands ");
+		sql.append("WHERE brandID = " + brandID+" ");
+		String brandName = jdbcTemplate.queryForObject(sql.toString(), String.class);
+		return brandName;
+	}
 	public List<ProductsDTO> GetAllProductsByID(String brandName){
 		int brandID = BrandIDByName(brandName);
 		String sql = SqlProductsByID(brandID).toString();
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}
-	public List<ProductsDTO> GetAllProducts(){
+	public List<ProductsDTO> Get5Products(){
 		StringBuffer sql = SqlProducts(false, false);
 		sql.append("LIMIT 5");
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql.toString(), new ProductsDTOMapper());
+		return listProducts;
+	}
+	public List<ProductsDTO> GetAllProducts(){
+		StringBuffer sql = SqlString();
+		sql.append("GROUP By p.productID, b.brandID, s.seriesID ");
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql.toString(), new ProductsDTOMapper());
 		return listProducts;
 	}
@@ -166,5 +185,86 @@ public class ProductsDAO extends BaseDAO{
 		String sql = SqlProductByID(productID);
 		ProductsDTO product = jdbcTemplate.queryForObject(sql, new ProductsDTOMapper());
 		return product;
+	}
+	public int AddProduct(ProductsDTO product) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO products");
+		sql.append("( productID");
+		sql.append(", brandID");
+		sql.append(", seriesID");
+		sql.append(", name");
+		sql.append(", price");
+		sql.append(", glass");
+		sql.append(", strap_material");
+		sql.append(", water_resistant");
+		sql.append(", color");
+		sql.append(", amount");
+		sql.append(", sale");
+		sql.append(", highlight");
+		sql.append(", new_product");
+		sql.append(", gender");
+		sql.append(", image");
+		sql.append(", title");
+		sql.append(", detail ");
+		sql.append(", created_at ");
+		sql.append(", updated_at )");
+		sql.append("VALUES ");
+		sql.append("( '"+product.getProductID()+"', ");
+		sql.append(product.getBrandID()+", ");
+		sql.append(product.getSeriesID()+", ");
+		sql.append(" '"+product.getName()+"', ");
+		sql.append(product.getPrice()+", ");
+		sql.append(" '"+product.getGlass()+"', ");
+		sql.append(" '"+product.getStrap_material()+"', ");
+		sql.append(product.getWater_resistant()+", ");
+		sql.append(" '"+product.getColor()+"', ");
+		sql.append(product.getAmount()+", ");
+		sql.append(product.getSale()+", ");
+		sql.append(product.isHighlight()+", ");
+		sql.append(product.isNew_product()+", ");
+		sql.append(product.getGender()+", ");
+		sql.append(" '"+product.getImage()+"', ");
+		sql.append(" '"+product.getTitle()+"', ");
+		sql.append(" '"+product.getDetail()+"', ");
+		sql.append(" now(), ");
+		sql.append(" now() )");
+		int count = jdbcTemplate.update(sql.toString());
+		return count;
+		
+	}
+	public int EditProduct(String productID, ProductsDTO product) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE products SET");
+		sql.append(" productID ='"+product.getProductID()+"'");
+		sql.append(", brandID ="+product.getBrandID());
+		sql.append(", seriesID ="+product.getSeriesID());
+		sql.append(", name ='"+product.getName()+"'");
+		sql.append(", price ="+product.getPrice());
+		sql.append(", glass ='"+product.getGlass()+"'");
+		sql.append(", strap_material ='"+product.getStrap_material()+"'");
+		sql.append(", water_resistant ='"+product.getWater_resistant()+"'");
+		sql.append(", color ='"+product.getColor()+"'");
+		sql.append(", amount ="+product.getAmount());
+		sql.append(", sale ="+product.getSale());
+		sql.append(", highlight ="+product.isHighlight());
+		sql.append(", new_product ="+product.isNew_product());
+		sql.append(", gender ="+product.getGender());
+		if(product.getImage()!="") {
+			sql.append(", image ='"+product.getImage()+"'");
+		}
+		sql.append(", title ='"+product.getTitle()+"'");
+		sql.append(", detail ='"+product.getDetail()+"'");
+		sql.append(", updated_at = now()");
+		sql.append("WHERE products.productID ='"+productID+"' ");
+		int count = jdbcTemplate.update(sql.toString());
+		return count;
+		
+	}
+	public int DeleteProduct(String productID) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("DELETE FROM products ");
+		sql.append("WHERE products.productID ='"+productID+"'");
+		int count = jdbcTemplate.update(sql.toString());
+		return count;
 	}
 }

@@ -69,11 +69,12 @@ public class ProductsDAO extends BaseDAO{
 		sql.append("GROUP By p.productID, b.brandID, s.seriesID ");
 		return sql;
 	}
-	private String SqlLimitProductsPaginates(int brandID, int start, int totalPage) {
+	private String SqlBrandLimitProductsPaginates(int brandID, int start, int totalPage) {
 		StringBuffer  sql = SqlProductsByID(brandID);
 		sql.append("LIMIT "+ start +", "+totalPage+" ");
 		return sql.toString();
 	}
+	
 	private String SqlProductByID(String productID) {
 		StringBuffer  sql = SqlString();
 		sql.append("WHERE 1=1 ");
@@ -144,13 +145,27 @@ public class ProductsDAO extends BaseDAO{
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql.toString(), new ProductsDTOMapper());
 		return listProducts;
 	}
-	public List<ProductsDTO> GetDataProductsPaginates(String brandName, int start, int productsPerPage){
+	public List<ProductsDTO> GetAllMenProducts(){
+		StringBuffer sql = SqlString();
+		sql.append("WHERE p.gender = 1 ");
+		sql.append("GROUP By p.productID, b.brandID, s.seriesID ");
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql.toString(), new ProductsDTOMapper());
+		return listProducts;
+	}
+	public List<ProductsDTO> GetAllWomenProducts(){
+		StringBuffer sql = SqlString();
+		sql.append("WHERE p.gender = 0 ");
+		sql.append("GROUP By p.productID, b.brandID, s.seriesID ");
+		List<ProductsDTO> listProducts = jdbcTemplate.query(sql.toString(), new ProductsDTOMapper());
+		return listProducts;
+	}
+	public List<ProductsDTO> GetBrandDataProductsPaginates(String brandName, int start, int productsPerPage){
 		int brandID = BrandIDByName(brandName);
-		String sql = SqlLimitProductsPaginates(brandID,start, productsPerPage);
+		String sql = SqlBrandLimitProductsPaginates(brandID,start, productsPerPage);
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql, new ProductsDTOMapper());
 		return listProducts;
 	}
-
+	
 	public List<ProductsDTO> SearchProducts(String keyword ) {
 		StringBuffer sql = SqlProducts(false, false);
 		List<ProductsDTO> listProducts = jdbcTemplate.query(sql.toString(), new ProductsDTOMapper());

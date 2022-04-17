@@ -48,5 +48,10 @@ public class AdHomeServiceImpl implements IAdHomeService {
 	public int DeleteProduct(String productID) {
 		return productsDAO.DeleteProduct(productID);
 	}
+	@Override
+	public List<ProductsDTO> SearchProducts(String keyword) {
+		List<ProductsDTO> listSearch = productsDAO.SearchProducts(keyword);
+		return listSearch;
+	}
 	
 }

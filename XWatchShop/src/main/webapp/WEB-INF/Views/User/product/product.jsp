@@ -142,8 +142,8 @@ Body Section
 				<tr class="techSpecRow"><td class="techSpecTD1">Chất liệu dây:</td><td class="techSpecTD2">${ product.strap_material }</td></tr>
 				<tr class="techSpecRow"><td class="techSpecTD1">Chống nước:</td><td class="techSpecTD2">${ product.water_resistant }</td></tr>
 				<tr class="techSpecRow"><td class="techSpecTD1">Màu:</td><td class="techSpecTD2">${ product.color }</td></tr>
-				<tr class="techSpecRow"><td class="techSpecTD1">Giới tính:</td><td class="techSpecTD2"><c:if test="${ product.gender == 0}">Nam</c:if>
-				<c:if test="${ product.gender != 0}">Nữ</c:if></td></tr>
+				<tr class="techSpecRow"><td class="techSpecTD1">Giới tính:</td><td class="techSpecTD2"><c:if test="${ product.gender == 1}">Nam</c:if>
+				<c:if test="${ product.gender != 1}">Nữ</c:if></td></tr>
 				</tbody>
 				</table>
 				<p>${ product.detail }<p>

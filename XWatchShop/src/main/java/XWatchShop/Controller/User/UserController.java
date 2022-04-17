@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import XWatchShop.Entity.Users;
@@ -38,22 +39,25 @@ public class UserController extends BaseController  {
 		return mvShare;
 	}
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.GET)
-	public ModelAndView LoginPage() {
+	public ModelAndView LoginPage(@RequestParam(value = "message", required = false) String message) {
 		mvShare.setViewName("User/account/login");
 		mvShare.addObject("user", new Users());
+		mvShare.addObject("message", message);
 		return mvShare;
 	}
 	@RequestMapping(value = "/dang-nhap", method = RequestMethod.POST)
-	public ModelAndView Login(HttpSession session, @ModelAttribute("user") Users user) {
-		 user = userService.CheckAccount(user);
-		if(user !=null) {
-			mvShare.setViewName("redirect:trang-chu");
+	public String Login(HttpSession session, @ModelAttribute("user") Users user) {
+		user = userService.CheckAccount(user);
+		if(user !=null && user.isRole() == true) {
 			session.setAttribute("LoginInfo", user);
+			return "redirect:/admin/list-product";
 		}
-		else {
-			mvShare.addObject("statusLogin", "Đăng nhập thất bại!");
+		if(user !=null && user.isRole() == false) {
+			session.setAttribute("LoginInfo", user);
+			return "redirect:/trang-chu";
+			
 		}
-		return mvShare;
+		return "redirect:/dang-nhap?message= Fail to login!";
 	}
 	@RequestMapping(value = "/dang-xuat", method = RequestMethod.GET)
 	public String Logout(HttpSession session, HttpServletRequest request) {

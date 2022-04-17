@@ -23,50 +23,24 @@
 			<a class="shopBtn btn-block" href="#">Upcoming products <br>
 				<small>Click to view</small></a> <br> <br>
 			<ul class="nav nav-list promowrapper">
+				<c:forEach var="item" items="${ productsPaginate }" begin="0" end="1">
 				<li>
 					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
+						<a class="zoomTool" href="<c:url value="/chi-tiet-san-pham/${ item.productID }"/>"
 							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img src="<c:url value ="/assets/img/bootstrap-ecommerce-templates.png"/>"
+							VIEW</a> <img src="<c:url value ="/assets/user/watch/${ item.image }"/>"
 							alt="bootstrap ecommerce templates">
 						<div class="caption">
 							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
+								<a class="shopBtn" href="<c:url value="/add-cart/${ item.productID }"/>">Thêm</a> <span
+									class="pull-right"><fmt:formatNumber
+															type="number" groupingUsed="true"
+															value="${ item.price *(100-item.sale)/100 }" />đ</span>
 							</h4>
 						</div>
 					</div>
 				</li>
-				<li style="border: 0">&nbsp;</li>
-				<li>
-					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img src="<c:url value ="/assets/img/shopping-cart-template.png"/>"
-							alt="shopping cart template">
-						<div class="caption">
-							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
-							</h4>
-						</div>
-					</div>
-				</li>
-				<li style="border: 0">&nbsp;</li>
-				<li>
-					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img src="<c:url value ="/assets/img/bootstrap-template.png"/>"
-							alt="bootstrap template">
-						<div class="caption">
-							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
-							</h4>
-						</div>
-					</div>
-				</li>
+				</c:forEach>
 			</ul>
 
 		</div>
@@ -82,8 +56,8 @@ New Products
 							<c:forEach var="item" items="${ productsPaginate }" varStatus="loop">
 								<li class="span4">
 									<div class="thumbnail">
-										<a href="product_details.html" class="overlay"></a> <a
-											class="zoomTool" href="product_details.html"
+										<a href="<c:url value="/chi-tiet-san-pham/${ item.productID }"/>" class="overlay"></a> <a
+											class="zoomTool" href="<c:url value="/chi-tiet-san-pham/${ item.productID }"/>"
 											title="add to cart"><span class="icon-search"></span>
 											QUICK VIEW</a> <a href="/XWatchShop/chi-tiet-san-pham/${ item.productID }"><img
 											src="<c:url value ="/assets/user/watch/${ item.image }"/>" alt=""></a>
@@ -95,7 +69,7 @@ New Products
 															value="${ item.price*(100-item.sale)/100 }" />đ</strong>
 											</p>
 											<h4>
-												<a class="shopBtn" href="#" title="add to cart"> Add to
+												<a class="shopBtn" href="<c:url value="/add-cart/${ item.productID }"/>" title="add to cart"> Add to
 													cart </a>
 											</h4>
 											<div class="actionList">
@@ -122,7 +96,7 @@ New Products
 	<div class="pagination">
 		<c:if test="${ paginatesData.totalPage >0}">
 		<a href="<c:url value="/thuong-hieu/${ brandName }/1"/>">&laquo;</a> 
-		<c:forEach var="item" begin="1" end="${ paginatesData.totalPage }" varStatus="loop">
+		<c:forEach begin="1" end="${ paginatesData.totalPage }" varStatus="loop">
 		<c:if test="${ (loop.index) == paginatesData.currentPage }">
 		<a href='<c:url value="/thuong-hieu/${ brandName }/${ loop.index}"/>'class="active">${ loop.index}</a>
 		</c:if>
@@ -130,7 +104,7 @@ New Products
 		<a href="<c:url value="/thuong-hieu/${ brandName }/${ loop.index}"/>">${ loop.index}</a>
 		</c:if>
 		</c:forEach>
-		<a href=""<c:url value="/thuong-hieu/${ brandName }/${ paginatesData.totalPage }"/>">&raquo;</a>
+		<a href="<c:url value="/thuong-hieu/${ brandName }/${ paginatesData.totalPage }"/>">&raquo;</a>
 		</c:if>
 	</div>
 </body>

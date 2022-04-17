@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 <body>
 	<div class="row">
+	<c:if test="${ not empty message }">${ message }</c:if>
 		<div id="sidebar" class="span3">
 			<div class="well well-small">
 				<h3>Thương hiệu</h3>
@@ -89,11 +90,11 @@
 					<div class="control-group">
 						<label class="control-label" for="inputEmail">Email</label>
 						<div class="controls">
-							<form:input type="text"  class="span3"  placeholder="Email" path="userID" />
+							<form:input type="text" name="username" class="span3"  placeholder="Email" path="userID" />
 						</div>
 					</div>
 					<div class="control-group">
-						<label class="control-label" for="inputPassword">Password</label>
+						<label class="control-label" name="password" for="inputPassword">Password</label>
 						<div class="controls">
 							<form:input type="password"  class="span3"  placeholder="Password" path="password" />
 						</div>
@@ -101,7 +102,6 @@
 					<div class="control-group">
 						<div class="controls">
 							<button type="submit" class="defaultBtn">Đăng nhập</button>
-							<a href="#"><br>Quên mật khẩu?</a>
 							<p>Chưa có tài khoản?<a href="<c:url value="/dang-ky"/>">Tạo tài khoản.</a></p>
 						</div>
 					</div>

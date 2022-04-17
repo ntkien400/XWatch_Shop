@@ -34,7 +34,12 @@ public class HomeController extends BaseController {
 		return mvShare;
 	}
 
-	
+	@RequestMapping(value ={"/403"})
+	public ModelAndView Page403() {
+		mvShare.setViewName("Admin/403");
+		mvShare.addObject("message", "Bạn không đủ quyền để truy cập!!!");
+		return mvShare;
+	}
 	@RequestMapping(value={"/search"})
 	public ModelAndView Search(@RequestParam("keyword") String keyword) {
 		mvShare.addObject("search", homeService.SearchProducts(keyword));

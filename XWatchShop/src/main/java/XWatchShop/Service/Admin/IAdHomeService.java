@@ -17,4 +17,5 @@ public interface IAdHomeService {
 	public ProductsDTO getProductByID(String productID);
 	public int EditProduct(String productID, ProductsDTO products );
 	public int DeleteProduct(String productID);
+	public List<ProductsDTO> SearchProducts(String keyword);
 }

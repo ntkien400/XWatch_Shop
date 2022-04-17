@@ -9,10 +9,13 @@
 </head>
 <body>
 	<div class="well well-small">
+	<c:if test="${ not empty message }">
+		<h3>${ message }</h3>
+	</c:if>
 		<h2>
 			Danh sách sản phẩm <small class="pull-right"> ${ products.size() } sản phẩm </small>
 		</h2>
-		<a href="<c:url value="/admin/product-detail"/>" class="button button-2">Thêm</a>
+		<a href="<c:url value="/admin/add-product"/>" class="button button-2">Thêm</a>
 		<table class="table table-bordered table-condensed">
 			<thead>
 				<tr>

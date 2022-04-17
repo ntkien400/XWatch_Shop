@@ -30,5 +30,15 @@ public class ProductServiceImpl implements IProductService {
 		List<ProductsDTO> listProducts = productsDAO.Get5Products();
 		return listProducts;
 	}
-	
+
+	@Override
+	public List<ProductsDTO> GetMenProducts() {
+		return productsDAO.GetAllMenProducts();
+	}
+
+	@Override
+	public List<ProductsDTO> GetWomenProducts() {
+		return productsDAO.GetAllWomenProducts();
+	}
+
 }

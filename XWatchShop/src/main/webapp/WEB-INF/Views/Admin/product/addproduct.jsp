@@ -9,6 +9,9 @@
 </head>
 <body>
 	<div class="well well2">
+	<c:if test="${ not empty message }">
+		<h3>${ message }</h3>
+	</c:if>
 		<form:form action="add-product" modelAttribute="product" class="form-horizontal" method="POST" enctype="multipart/form-data">
 			<h3>Thông tin sản phẩm</h3>
 			<div class="control-group select-box">
@@ -45,7 +48,7 @@
 				<div class="control-group span3">
 					<label class="control-label">Giá</label>
 					<div class="controls">
-						<form:input type="text" value="0" path="price"/>
+						<form:input type="number" placeholder="0" path="price"/>
 					</div>
 				</div>
 				<div class="control-group span3">

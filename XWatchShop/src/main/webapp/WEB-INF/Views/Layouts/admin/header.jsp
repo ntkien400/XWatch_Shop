@@ -35,7 +35,7 @@ Navigation Bar Section
 						
 					</c:forEach>
 				</ul>
-				<form action="<c:url value="/search"/>" class="navbar-search pull-left">
+				<form action="<c:url value="/admin/search"/>" class="navbar-search pull-left">
 					<input type="text" placeholder="Tìm kiếm" name="keyword" class="search-query span5">
 				</form>
 				

@@ -31,7 +31,7 @@
 					<tbody>
 						<c:forEach var="item" items="${ ShoppingCart }">
 							<tr>
-								<td><img width="100" src="<c:url value ="/assets/user/watch/${ item.value.product.image_name }"/>" alt=""></td>
+								<td><img width="100" src="<c:url value ="/assets/user/watch/${ item.value.product.image }"/>" alt=""></td>
 								<td>${ item.value.product.name }</td>
 								<td><fmt:formatNumber
 								type="number" groupingUsed="true" value="${ item.value.product.price }"/>đ</td>

@@ -147,7 +147,7 @@
 				<c:forEach var="item" items="${ ShoppingCart }">
 					<div class="row-fluid">
 						<div class="span2">
-							<img class="img-checkout" src="<c:url value ="/assets/user/watch/${ item.value.product.image_name }"/>" alt="">
+							<img class="img-checkout" src="<c:url value ="/assets/user/watch/${ item.value.product.image }"/>" alt="">
 						</div>
 						<div class="span5">
 							<h5>${ item.value.product.name }</h5>

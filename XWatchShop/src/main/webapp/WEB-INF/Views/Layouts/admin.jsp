@@ -42,7 +42,7 @@
 					<a class="active" href="<c:url value="/"/>"> <span class="icon-home"></span>
 						Trang chủ
 					</a>
-					<a href="<c:url value="/admin/"/>"><span class="icon-lock"></span> Sản phẩm</a>
+					<a href="<c:url value="/admin/list-product"/>"><span class="icon-lock"></span> Sản phẩm</a>
 					<a href="<c:url value="#"/>"><span class="icon-lock"></span> Đơn hàng</a>
 					<a href="<c:url value="#"/>"><span class="icon-lock"></span> Tài khoản</a>
 					<c:if test="${ not empty LoginInfo }">

@@ -35,52 +35,24 @@ Body Section
 			<a class="shopBtn btn-block" href="#">Upcoming products <br>
 				<small>Click to view</small></a> <br> <br>
 			<ul class="nav nav-list promowrapper">
+				<c:forEach var="item" items="${ newproducts }" begin="0" end="1">
 				<li>
 					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
+						<a class="zoomTool" href="<c:url value="/chi-tiet-san-pham/${ item.productID }"/>"
 							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img src="<c:url value="/assets/user/img/bootstrap.png"/>"
+							VIEW</a> <img src="<c:url value ="/assets/user/watch/${ item.image }"/>"
 							alt="bootstrap ecommerce templates">
 						<div class="caption">
 							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
+								<a class="shopBtn" href="<c:url value="/add-cart/${ item.productID }"/>">Thêm</a> <span
+									class="pull-right"><fmt:formatNumber
+															type="number" groupingUsed="true"
+															value="${ item.price *(100-item.sale)/100 }" />đ</span>
 							</h4>
 						</div>
 					</div>
 				</li>
-				<li style="border: 0">&nbsp;</li>
-				<li>
-					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img
-							src="<c:url value="/assets/user/img/AE-1200WHD-1AVDF-399x399.webp"/>"
-							alt="shopping cart template">
-						<div class="caption">
-							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
-							</h4>
-						</div>
-					</div>
-				</li>
-				<li style="border: 0">&nbsp;</li>
-				<li>
-					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img
-							src="<c:url value="/assets/user/img/bootstrap-template.png"/>"
-							alt="bootstrap template">
-						<div class="caption">
-							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
-							</h4>
-						</div>
-					</div>
-				</li>
+				</c:forEach>
 			</ul>
 
 		</div>
@@ -160,9 +132,7 @@ New Products
 	-->
 		<div class="well well-small">
 			<h3>
-				<a class="btn btn-mini pull-right" href="products.html"
-					title="View more">VIew More<span class="icon-plus"></span></a> Sản
-				phẩm nổi bật
+				 Sản phẩm nổi bật
 			</h3>
 			<hr class="soften" />
 			<div class="row-fluid">

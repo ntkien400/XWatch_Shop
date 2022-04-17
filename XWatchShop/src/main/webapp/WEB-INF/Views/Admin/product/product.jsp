@@ -45,7 +45,7 @@
 								class="btn btn-mini btn-danger" type="button"> <span
 								class="icon-edit" style="font-size:15px"></span>
 							</a>
-							<a href="<c:url value ="/admin/delete-product/${ item.productID }"/>"
+							<a href="<c:url value ="/admin/list-product/delete-product/${ item.productID }"/>"
 								class="btn btn-mini btn-danger" type="button"> <span
 								class="icon-trash" style="font-size:15px"></span>
 							</a>

@@ -98,13 +98,13 @@ public class AdHomeController extends AdBaseController {
 		} 
 		return "redirect:/admin/product-detail/" +productID+ "?message=Edit error!";
 	}
-	@RequestMapping(value = "/delete-product/{productID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/list-product/delete-product/{productID}", method = RequestMethod.GET)
 	public String DeleteProduct(@PathVariable("productID") String productID, HttpServletRequest request) {
 		int count = adHomeService.DeleteProduct(productID);
 		if(count >0) {
-			return "redirect:/admin?message=Delete success!";
+			return "redirect:/admin/list-product?message=Delete success!";
 		}
-		return "redirect:/admin?message=Delete error!";
+		return "redirect:/admin/list-product?message=Delete error!";
 	}
 	@RequestMapping(value={"/search"})
 	public ModelAndView Search(@RequestParam("keyword") String keyword) {
